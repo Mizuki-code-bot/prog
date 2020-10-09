@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dateオブジェクト演習2</title>
+
+<script>
+
+    //日時取得
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;  //月は必ず +１をする！
+    const date = now.getDate();
+    const day = now.getDay();  //曜日[0=日曜日,1=月曜日...]
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const s = now.getSeconds();
+    let a = "";
+    let d = "";
+    if(h < 12){
+        a = "午前";
+    }else if(12 < h && h < 18){
+        a = "午後";
+    }else if(18 < h && h < 24){
+        a = "夜"
+    }
+    if(day == 0){
+        d = "日";
+    }else if(day == 1){
+        d = "月";
+    }else if(day == 2){
+        d = "火";
+    }else if(day == 3){
+        d = "水";
+    }else if(day == 4){
+        d = "木";
+    }else if(day == 5){
+        d = "金";
+    }else if(day == 6){
+        d = "土";
+    }
+
+    //日時表示文字列の作成
+    const str = "現在日時：";
+    alert( str + year + "年" + month + "月" + date + "日" + "("+d+")" + a + h + "時" + m + "分" + s + "秒" );
+
+</script>
+</head>
+<body>
+<h1>Dateオブジェクト：console.logで確認</h1>
+</body>
+</html>
