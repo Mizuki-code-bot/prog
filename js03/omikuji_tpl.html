@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="sample.css">
+<title>おみくじ</title>
+</head>
+<body>
+
+<header>
+    <h1>おみくじ</h1>
+</header>
+
+<main>
+    <ul>
+        <li id="pull">おみくじを引く</li>
+    </ul>
+    <p id="echo"></p>
+</main>
+
+<footer>フッター</footer>
+<script>
+// Clickイベントのブロック
+const pull = document.querySelector("#pull");
+echo.innerHTML ='<img src = "ume011.png">';
+echo.imageSize = "50%";
+pull.onclick = function(){
+    //乱数を作る
+    const num = Math.ceil(Math.random() * 6);
+
+    //乱数をIF文処理で分ける
+    //条件に合っていればalert()で標示
+    if(num == 1){
+        echo.innerHTML = "大吉";
+    }
+    if(num == 2){
+        echo.innerHTML = "中吉";
+    }
+    if(num == 3){
+        echo.innerHTML = "小吉";
+    }
+    if(num == 4){
+        echo.innerHTML = "吉";
+    }
+    if(num == 5){
+        echo.innerHTML = "凶";
+    }
+    if(num == 6){
+        echo.innerHTML = "末吉";
+    }
+}
+
+echo.style.color = "#ff0000";
+echo.style.borderStyle = "double";
+echo.style.backgroundmage ='<img src = "hako.jpg">';
+
+
+
+
+</script>
+</body>
+</html>
