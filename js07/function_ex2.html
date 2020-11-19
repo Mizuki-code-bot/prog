@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex2</title>
+</head>
+<body>
+    <h1></h1>
+    <script>
+        // 関数群
+        function tasu(a,b){
+            const t = a + b;
+            return t;
+        }
+        function hiku(a, b){
+            const t = a - b;
+            return t;
+        }
+        function kake(a, b){
+            const t = a * b;
+            return t;
+        }
+        function waru(a, b){
+            const t = a / b;
+            return t;
+        }
+
+        // 実行群
+        const a = tasu(10, 10);
+        const b = hiku(10, 20);
+        const c = kake(100, 100);
+        const d = waru(10, 2);
+        const sum = a + b + c + d;
+        document.querySelector("h1").innerHTML = sum;
+
+
+    </script>
+    
+</body>
+</html>
