@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>Chatアプリ</title>
+</head>
+
+<header>
+  <img src = _e_town0080_s512_town0080_0.png width = "1000">
+</header>
+
+<body>
+
+<!-- コンテンツ表示画面 -->
+<div>
+    <!-- 誰が送信したのかを書くuname -->
+    <div>name : <input type="text" id="uname"></div>
+    <div>
+        <!-- メッセージを書くtext -->
+        <textarea id="text" cols="30" rows="10"></textarea>
+        <!-- 送信ボタン send -->
+        <button id="send"><img src = nu00157.png width = "40"></button>
+    </div>
+    <!-- 受信したらテキストを入れていく output -->
+    <div id="output"></div>
+</div> 
+<!--/ コンテンツ表示画面 -->
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- JQuery -->
+
+<!--** 以下Firebase **-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDkxfv5p7yy1d_WC1KBxh4F-WywzZf2JMg",
+    authDomain: "gsdemo-f1c07.firebaseapp.com",
+    databaseURL: "https://gsdemo-f1c07.firebaseio.com",
+    projectId: "gsdemo-f1c07",
+    storageBucket: "gsdemo-f1c07.appspot.com",
+    messagingSenderId: "622830381111",
+    appId: "1:622830381111:web:896876992cf1997ca537b2"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // 書いたらチャットができる
+  const ref = firebase.database().ref();
+
+  //送信イベント
+  $("#send").on("click", function(){
+      const uname = $("#uname").val();
+      const text = $("#text").val();
+      const msg ={
+        // 名前: 変数
+          uname: uname,
+          text: text
+      };
+      ref.push(msg); //送信する
+      $("#text").val("");
+  });
+
+  //テキストエリアで入力しているときにキーが押されたら実行する
+  $("#text").on("keydown", function(e){
+      if(e.keyCode == 13){
+        const uname = $("#uname").val();
+        const text = $("#text").val();
+        const msg ={
+            // 名前: 変数
+            uname: uname,
+            text: text
+        };
+        ref.push(msg); //送信する
+      }
+  });
+
+  //受信イベント
+  //"child_added: 毎回１個", "value: 毎回全てのデータを取得"   
+  ref.on("child_added", function(data){
+      const v = data.val(); //オブジェクト変数がvに代入
+      const k = data.key; //データのユニークKEY
+      const h = '<p>' + v.uname + ':' + year + '/' + month + '/' + date + '('+d[day]+')' + '<br>' + v.text + '</p>'; //名前とメッセージが横並びだと気持ち悪いから<br>
+      $("#output").prepend(h);
+  });
+
+  //日時取得
+  const now = new Date(); //日時
+  const year = now.getFullYear(); //年
+  const month = now.getMonth() + 1;  //月は必ず +１をする！
+  const date = now.getDate();
+  const day = now.getDay();  //曜日[0=日曜日,1=月曜日...]
+  let d = ["日", "月", "火", "水", "木", "金", "土"];
+</script>
+
+</body>
+
+<footer>
+  <img src = illust3787.png width = "1100">
+</footer>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
