@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>一般常識クイズ</title>
+</head>
+<body>
+
+<header>
+    <h1>一般常識クイズ</h1>
+    <h2>６問全部答えられるはず...</h2>
+</header>
+
+<main>
+    <p id="quest">ここに問題が出題されます</p>
+    <p>
+        <input type="radio" name="toi" value="1"><span id="toi1">選択肢１</span>
+        <input type="radio" name="toi" value="2"><span id="toi2">選択肢２</span>
+        <input type="radio" name="toi" value="3"><span id="toi3">選択肢３</span>
+    </p>
+</main>
+
+<script>
+//ここから記述領域［START］
+
+  //以下に配列を記述してください。
+  //問題文[多重配列]
+  const qs = [
+    ["1. 日本で一番小さい都道府県は？"],
+    ["2. 「押印」の読み方は？"],
+    ["3. オーストラリアの首都は？"],
+    ["4. じゃがいもはどこの部分を食べている？"],
+    ["5. 食後に退席をする時は、ナプキンを軽く適当にたたんでテーブルの上に置くと良いとされています。では、丁寧にたたんでから帰ると、どういう意味があるのでしょう？"],
+    ["6. 日本の国鳥は？"]
+  ];
+    
+  //回答選択肢[多重配列]
+  const toi = [
+    ["香川県","大阪府","東京都"],
+    ["おしいん","おういん","はんこ"],
+    ["メルボルン","シドニー","キャンベラ"],
+    ["根","茎","実"],
+    ["会計は後日という意味","料理が口に合わなかった","お手洗いに行く"],
+    ["ハト","キジ", "トキ"]
+  ];
+    
+  //答え[配列]
+  const ans = [1, 2, 3, 2, 2, 2];
+
+  //1.最初の問題文＆回答選択肢＆回答値を設定
+  let i = 0; // 配列のインデックス
+  let point = 0;
+  $("#quest").text(qs[i]); // id = "quest" の箇所に表示
+  // 選択肢の表示
+  $("#toi1").text(toi[i][0]);
+  $("#toi2").text(toi[i][1]);
+  $("#toi3").text(toi[i][2]);
+
+  //2.ラジオボタンをクリックしたらイベント発生！(クリックイベント)
+  $("[name = toi]").on("click", function(){
+    const v = $(this).val();
+    if(ans[i] == v){
+      $("h1").text("正解！"); // id名ではないので # は不要。
+      point++;
+    }else{
+      $("h1").text("不正解");
+    }
+
+    if(i < qs.length){
+    // 次の選択肢に切り替える。
+    i++; // 配列に入れる i が1プラスされる。
+    $("#quest").text(qs[i]);
+    $("#toi1").text(toi[i][0]);
+    $("#toi2").text(toi[i][1]);
+    $("#toi3").text(toi[i][2]);
+    }else if(i == qs.length){
+      alert("お疲れ様です。" +point+ "点です。どうだった？");
+      alert("正解：１．香川県 ２．おういん ３．キャンベラ ４．茎 ５．料理が口に合わなかった ６．キジ");
+    }
+  });
+
+   
+
+
+
+
+
+
+//ここまでが記述領域［END］
+</script>
+</body>
+</html>
