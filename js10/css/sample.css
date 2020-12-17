@@ -1,0 +1,22 @@
+body{
+  background: #f2d8a7;
+  text-align: center;
+}
+
+h1{
+  color: #d94e67;
+  font-size: 50px;
+  margin: auto;
+}
+
+#drowarea{
+  margin: 10px;
+  background: #fff;
+  border: #a68572;
+}
+
+
+input[type = "range"]{
+    height: 14px;
+    width: 20%;
+}
